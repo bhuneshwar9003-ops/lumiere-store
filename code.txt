@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Home | Where Technology Becomes Comfort</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mica-white: #FAF8F5;
+            --warm-gray: #E5E0DA;
+            --linen: #EDE8E2;
+            --pale-halo: #F8EDE3;
+            --deep-space: #2D2A26;
+            --warm-oak: #BFA88A;
+            --frosted: rgba(250, 248, 245, 0.7);
+            --shadow-warm: rgba(45, 42, 38, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--mica-white);
+            color: var(--deep-space);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* Minimal Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .nav > * {
+            pointer-events: auto;
+        }
+
+        .nav-logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: 0.85rem;
+            letter-spacing: 0.5em;
+            color: var(--deep-space);
+            text-decoration: none;
+        }
+
+        .nav-menu-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            padding: 4px;
+        }
+
+        .nav-menu-btn span {
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: var(--deep-space);
+            transition: all 0.4s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            height: 100dvh;
+            position: relative;
+            overflow: hidden;
+            background: var(--deep-space);
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: clamp(2rem, 10vw, 5rem);
+            letter-spacing: 0.25em;
+            color: var(--mica-white);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: revealUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--linen);
+            opacity: 0;
+            animation: revealUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+            transform: translateY(30px);
+        }
+
+        .hero-mode {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: revealUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+        }
+
+        .mode-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            color: var(--mica-white);
+            text-transform: uppercase;
+            transition: all 0.6s ease;
+        }
+
+        .mode-indicator {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .mode-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--mica-white);
+            opacity: 0.3;
+            transition: all 0.5s ease;
+        }
+
+        .mode-dot.active {
+            opacity: 1;
+            transform: scale(1.3);
+        }
+
+        @keyframes revealUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ambient Section */
+        .ambient-section {
+            min-height: 100vh;
+            padding: 10vh 5%;
+            background: linear-gradient(180deg, var(--deep-space) 0%, var(--warm-gray) 30%, var(--mica-white) 60%);
+            position: relative;
+        }
+
+        .ambient-header {
+            text-align: center;
+            margin-bottom: 8vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ambient-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            color: var(--warm-oak);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .ambient-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: clamp(1.5rem, 4vw, 2.8rem);
+            letter-spacing: 0.08em;
+            color: var(--deep-space);
+            line-height: 1.4;
+        }
+
+        .time-of-day {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .time-btn {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            padding: 0.9rem 2rem;
+            border: 1px solid var(--linen);
+            background: transparent;
+            color: var(--deep-space);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 2px;
+        }
+
+        .time-btn:hover,
+        .time-btn.active {
+            background: var(--deep-space);
+            color: var(--mica-white);
+            border-color: var(--deep-space);
+        }
+
+        /* Living Room Visualization */
+        .living-room {
+            max-width: 1000px;
+            margin: 0 auto;
+            aspect-ratio: 16/9;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 60px 120px var(--shadow-warm);
+        }
+
+        .room-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .room-back-wall {
+            background: var(--mica-white);
+        }
+
+        .room-floor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 35%;
+            background: linear-gradient(180deg, #D9CDB8 0%, #C4B69E 100%);
+        }
+
+        .room-window-frame {
+            position: absolute;
+            top: 12%;
+            left: 10%;
+            width: 80%;
+            height: 55%;
+            border: 12px solid var(--deep-space);
+            border-radius: 3px;
+            background: var(--pale-halo);
+            overflow: hidden;
+        }
+
+        .window-sky {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 1.5s ease;
+        }
+
+        .sheer-drapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg,
+                rgba(255,255,255,0.5) 0%,
+                rgba(255,255,255,0.2) 25%,
+                rgba(255,255,255,0.3) 50%,
+                rgba(255,255,255,0.15) 75%,
+                rgba(255,255,255,0.4) 100%);
+            transition: all 1s ease;
+        }
+
+        .light-beams {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .light-beam {
+            position: absolute;
+            background: linear-gradient(180deg,
+                rgba(248, 237, 227, 0.6) 0%,
+                rgba(248, 237, 227, 0) 100%);
+            transform-origin: top center;
+        }
+
+        .lamp {
+            position: absolute;
+            bottom: 38%;
+            right: 12%;
+            width: 40px;
+            height: 80px;
+        }
+
+        .lamp-shade {
+            width: 40px;
+            height: 25px;
+            background: var(--linen);
+            border-radius: 2px 2px 50% 50%;
+            position: relative;
+        }
+
+        .lamp-glow {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 150px;
+            background: radial-gradient(ellipse at top, var(--pale-halo), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .lamp-stem {
+            width: 3px;
+            height: 55px;
+            background: var(--deep-space);
+            margin: 0 auto;
+        }
+
+        .room-ambient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 1s ease;
+            pointer-events: none;
+        }
+
+        /* Sensor Overlay */
+        .sensor-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .sensor-ring {
+            position: absolute;
+            border: 1px solid var(--warm-oak);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sensor-ring.active {
+            opacity: 0.6;
+            transform: scale(1);
+        }
+
+        .sensor-temp {
+            position: absolute;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.7rem;
+            color: var(--warm-oak);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .sensor-temp.active {
+            opacity: 1;
+        }
+
+        /* Control Metrics */
+        .control-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 5vh;
+            flex-wrap: wrap;
+        }
+
+        .metric {
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .metric-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: 2.5rem;
+            color: var(--deep-space);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            transition: all 0.5s ease;
+        }
+
+        .metric-unit {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: var(--warm-oak);
+        }
+
+        .metric-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: var(--deep-space);
+            opacity: 0.5;
+            text-transform: uppercase;
+            margin-top: 0.8rem;
+        }
+
+        /* Scenes Section */
+        .scenes-section {
+            padding: 15vh 5%;
+            background: var(--mica-white);
+        }
+
+        .scenes-header {
+            max-width: 600px;
+            margin: 0 auto 10vh;
+            text-align: center;
+        }
+
+        .scene-block {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            min-height: 80vh;
+            margin-bottom: 5vh;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scene-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scene-block:nth-child(even) {
+            direction: rtl;
+        }
+
+        .scene-block:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .scene-visual {
+            position: relative;
+            overflow: hidden;
+            background: var(--linen);
+        }
+
+        .scene-image {
+            position: absolute;
+            top: 8%;
+            left: 8%;
+            right: 8%;
+            bottom: 8%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            transition: transform 0.8s ease;
+        }
+
+        .scene-block:hover .scene-image {
+            transform: scale(1.03);
+        }
+
+        .scene-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+
+        .scene-block:hover .scene-overlay {
+            opacity: 0.25;
+        }
+
+        .scene-divider {
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                var(--warm-oak) 20%, 
+                var(--warm-oak) 80%, 
+                transparent 100%);
+            opacity: 0.3;
+            position: relative;
+        }
+
+        .scene-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: var(--warm-oak);
+            border-radius: 50%;
+        }
+
+        .scene-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .scene-time {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            color: var(--warm-oak);
+            margin-bottom: 2rem;
+        }
+
+        .scene-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            letter-spacing: 0.05em;
+            color: var(--deep-space);
+            margin-bottom: 1.5rem;
+        }
+
+        .scene-desc {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--deep-space);
+            opacity: 0.7;
+            line-height: 2;
+            max-width: 380px;
+        }
+
+        /* Specs Section */
+        .specs-section {
+            padding: 15vh 5%;
+            background: linear-gradient(180deg, var(--linen) 0%, var(--warm-gray) 100%);
+        }
+
+        .specs-header {
+            text-align: center;
+            margin-bottom: 8vh;
+        }
+
+        .specs-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .spec-item {
+            background: var(--mica-white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px var(--shadow-warm);
+        }
+
+        .spec-head {
+            padding: 1.8rem 2.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .spec-head:hover {
+            background: rgba(248, 237, 227, 0.5);
+        }
+
+        .spec-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            color: var(--deep-space);
+        }
+
+        .spec-experience {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: 0.8rem;
+            color: var(--warm-oak);
+            letter-spacing: 0.08em;
+        }
+
+        .spec-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--linen);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+
+        .spec-icon::before {
+            content: '';
+            width: 8px;
+            height: 1px;
+            background: var(--warm-oak);
+            transition: transform 0.4s ease;
+        }
+
+        .spec-icon::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 8px;
+            background: var(--warm-oak);
+            transition: transform 0.4s ease;
+        }
+
+        .spec-item.open .spec-icon {
+            border-color: var(--warm-oak);
+        }
+
+        .spec-item.open .spec-icon::after {
+            transform: rotate(90deg);
+        }
+
+        .spec-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .spec-item.open .spec-body {
+            max-height: 200px;
+        }
+
+        .spec-details {
+            padding: 0 2.2rem 1.8rem;
+            border-top: 1px solid var(--linen);
+            padding-top: 1.2rem;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+        }
+
+        .spec-row-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--deep-space);
+            opacity: 0.5;
+        }
+
+        .spec-row-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+            color: var(--deep-space);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-space);
+            padding: 8vh 5%;
+            color: var(--mica-white);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: 1.2rem;
+            letter-spacing: 0.4em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-philosophy {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--warm-gray);
+            line-height: 1.9;
+        }
+
+        .footer-heading {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--warm-oak);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: var(--warm-gray);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--mica-white);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .scene-block {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .scene-block:nth-child(even) {
+                direction: ltr;
+            }
+
+            .scene-divider {
+                display: none;
+            }
+
+            .scene-visual {
+                height: 50vh;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                padding: 1.5rem 4%;
+            }
+
+            .control-metrics {
+                gap: 2rem;
+            }
+
+            .scene-text {
+                padding: 2rem;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">AURA</a>
+        <button class="nav-menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title">AURA HOME</h1>
+            <p class="hero-subtitle">The best technology is technology you don't feel</p>
+            <div class="hero-mode">
+                <div class="mode-indicator">
+                    <div class="mode-dot active" id="dot-away"></div>
+                    <div class="mode-dot" id="dot-home"></div>
+                </div>
+                <span class="mode-label" id="mode-label">Away Mode</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ambient Section -->
+    <section class="ambient-section" id="ambient">
+        <div class="ambient-header">
+            <span class="ambient-label">Invisible Intelligence</span>
+            <h2 class="ambient-title">Light that breathes with your day</h2>
+            <div class="time-of-day">
+                <button class="time-btn active" data-time="morning">Dawn</button>
+                <button class="time-btn" data-time="noon">Midday</button>
+                <button class="time-btn" data-time="dusk">Dusk</button>
+                <button class="time-btn" data-time="night">Night</button>
+            </div>
+        </div>
+
+        <div class="living-room" id="living-room">
+            <div class="room-layer room-back-wall"></div>
+            <div class="room-layer room-floor"></div>
+            
+            <div class="room-window-frame">
+                <div class="window-sky" id="window-sky"></div>
+                <div class="sheer-drapes" id="sheer-drapes"></div>
+                <div class="light-beams" id="light-beams"></div>
+            </div>
+            
+            <div class="lamp">
+                <div class="lamp-shade">
+                    <div class="lamp-glow" id="lamp-glow"></div>
+                </div>
+                <div class="lamp-stem"></div>
+            </div>
+            
+            <div class="room-ambient" id="room-ambient"></div>
+            
+            <div class="sensor-overlay" id="sensor-overlay"></div>
+        </div>
+
+        <div class="control-metrics">
+            <div class="metric">
+                <div class="metric-value" id="metric-light">45<span class="metric-unit">%</span></div>
+                <div class="metric-label">Ambient Light</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="metric-temp">22<span class="metric-unit">°</span></div>
+                <div class="metric-label">Temperature</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="metric-humidity">48<span class="metric-unit">%</span></div>
+                <div class="metric-label">Humidity</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="metric-mood">Serene</div>
+                <div class="metric-label">Atmosphere</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scenes Section -->
+    <section class="scenes-section" id="scenes">
+        <div class="scenes-header">
+            <span class="ambient-label">Living Scenes</span>
+            <h2 class="ambient-title">Every moment, intuitively understood</h2>
+        </div>
+
+        <div class="scene-block">
+            <div class="scene-visual">
+                <div class="scene-image" style="background: linear-gradient(160deg, #F0E6D8 0%, #E8DCC8 40%, #D8C8B4 100%)"></div>
+                <div class="scene-overlay" style="background: linear-gradient(135deg, rgba(248, 237, 227, 0.8), transparent)"></div>
+            </div>
+            <div class="scene-divider"></div>
+            <div class="scene-text">
+                <span class="scene-time">06:30</span>
+                <h3 class="scene-title">Gentle Awakening</h3>
+                <p class="scene-desc">Sheer curtains soften the first light. Temperature rises by a single degree. Your morning soundscape begins at a whisper, growing with the sun.</p>
+            </div>
+        </div>
+
+        <div class="scene-block">
+            <div class="scene-visual">
+                <div class="scene-image" style="background: linear-gradient(160deg, #E8E0D4 0%, #DDD4C4 40%, #CCC0A8 100%)"></div>
+                <div class="scene-overlay" style="background: linear-gradient(135deg, rgba(232, 224, 212, 0.8), transparent)"></div>
+            </div>
+            <div class="scene-divider"></div>
+            <div class="scene-text">
+                <span class="scene-time">14:00</span>
+                <h3 class="scene-title">Quiet Focus</h3>
+                <p class="scene-desc">Natural light optimizes for reading. The air circulates in silence. A space designed for thought, undisturbed by the world outside.</p>
+            </div>
+        </div>
+
+        <div class="scene-block">
+            <div class="scene-visual">
+                <div class="scene-image" style="background: linear-gradient(160deg, #4A443C 0%, #3A342C 40%, #2A2420 100%)"></div>
+                <div class="scene-overlay" style="background: radial-gradient(ellipse at 60% 40%, rgba(191, 168, 138, 0.4), transparent)"></div>
+            </div>
+            <div class="scene-divider"></div>
+            <div class="scene-text">
+                <span class="scene-time">21:00</span>
+                <h3 class="scene-title">Evening Sanctuary</h3>
+                <p class="scene-desc">Warm amber light replaces day's brightness. Temperature cools for rest. The home prepares for dreams, while you simply exist in the calm.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs-section" id="specs">
+        <div class="specs-header">
+            <span class="ambient-label">Hidden Excellence</span>
+            <h2 class="ambient-title">Technical refinement, felt not seen</h2>
+        </div>
+
+        <div class="specs-grid">
+            <div class="spec-item">
+                <div class="spec-head">
+                    <div>
+                        <div class="spec-name">Response Time</div>
+                        <div class="spec-experience">0.1s instant response</div>
+                    </div>
+                    <div class="spec-icon"></div>
+                </div>
+                <div class="spec-body">
+                    <div class="spec-details">
+                        <div class="spec-row">
+                            <span class="spec-row-label">Sensor Latency</span>
+                            <span class="spec-row-value">&lt; 50ms</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-row-label">Processor</span>
+                            <span class="spec-row-value">ARM Cortex-M7 @ 480MHz</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-row-label">Protocol</span>
+                            <span class="spec-row-value">Matter / Thread / Zigbee 3.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-item">
+                <div class="spec-head">
+                    <div>
+                        <div class="spec-name">Climate Sensing</div>
+                        <div class="spec-experience">Perfect comfort, always felt</div>
+                    </div>
+                    <div class="spec-icon"></div>
+                </div>
+                <div class="spec-body">
+                    <div class="spec-details">
+                        <div class="spec-row">
+                            <span class="spec-row-label">Temperature Precision</span>
+                            <span class="spec-row-value">±0.1°C</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-row-label">Humidity Range</span>
+                            <span class="spec-row-value">0–100% RH ±1.5%</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-row-label">Air Quality</span>
+                            <span class="spec-row-value">PM2.5 / VOC / CO2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-item">
+                <div class="spec-head">
+                    <div>
+                        <div class="spec-name">Lighting Intelligence</div>
+                        <div class="spec-experience">Natural light, perfected</div>
+                    </div>
+                    <div class="spec-icon"></div>
+                </div>
+                <div class="spec-body">
+                    <div class="spec-details">
+                        <div class="spec-row">
+                            <span class="spec-row-label">Color Temperature</span>
+                            <span class="spec-row-value">1800K – 6500K</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-row-label">Dimming Resolution</span>
+                            <span class="spec-row-value">0.1% steps</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-row-label">Circadian Presets</span>
+                            <span class="spec-row-value">32 scenes + custom</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-item">
+                <div class="spec-head">
+                    <div>
+                        <div class="spec-name">Energy Efficiency</div>
+                        <div class="spec-experience">Sustainable by nature</div>
+                    </div>
+                    <div class="spec-icon"></div>
+                </div>
+                <div class="spec-body">
+                    <div class="spec-details">
+                        <div class="spec-row">
+                            <span class="spec-row-label">Standby Draw</span>
+                            <span class="spec-row-value">&lt; 0.3W</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-row-label">Average Load</span>
+                            <span class="spec-row-value">1.8W per node</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-row-label">Annual Savings</span>
+                            <span class="spec-row-value">Up to 32% reduction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">AURA HOME</div>
+                <p class="footer-philosophy">Invisible technology,<br>felt comfort.</p>
+            </div>
+            <div>
+                <h4 class="footer-heading">Experience</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Showrooms</a></li>
+                    <li><a href="#">Virtual Demo</a></li>
+                    <li><a href="#">Consultation</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Installation</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Philosophy</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // === THREE.JS HERO BACKGROUND ===
+        const heroCanvas = document.getElementById('hero-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+        const renderer = new THREE.WebGLRenderer({ 
+            canvas: heroCanvas, 
+            antialias: true, 
+            alpha: true 
+        });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const deepSpace = new THREE.Color(0x2D2A26);
+        const warmGlow = new THREE.Color(0xF8EDE3);
+        const paleHalo = new THREE.Color(0xF8EDE3);
+
+        // Background shader
+        const bgGeometry = new THREE.PlaneGeometry(20, 15);
+        const bgMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                uProgress: { value: 0.0 },
+                uTime: { value: 0.0 },
+                uColorDark: { value: deepSpace },
+                uColorLight: { value: warmGlow }
+            },
+            vertexShader: `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform float uProgress;
+                uniform float uTime;
+                uniform vec3 uColorDark;
+                uniform vec3 uColorLight;
+                varying vec2 vUv;
+                
+                void main() {
+                    vec2 uv = vUv;
+                    
+                    float grad = smoothstep(0.0, 1.0, uv.y * 0.6 + 0.2);
+                    vec3 base = mix(uColorDark * 0.7, uColorDark, grad);
+                    
+                    // Warm light from top right
+                    float lightX = 1.0 - uv.x;
+                    float lightY = uv.y;
+                    float lightMask = pow(lightX * lightY, 2.0) * uProgress;
+                    
+                    // Soft light rays
+                    float ray1 = sin(uv.x * 4.0 + uTime * 0.15) * 0.5 + 0.5;
+                    float ray2 = sin(uv.y * 3.0 - uTime * 0.1) * 0.5 + 0.5;
+                    float rays = ray1 * ray2 * lightMask * 0.15;
+                    
+                    vec3 light = uColorLight * (lightMask * 0.5 + rays);
+                    
+                    gl_FragColor = vec4(base + light, 1.0);
+                }
+            `
+        });
+        const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+        bgMesh.position.z = -5;
+        scene.add(bgMesh);
+
+        // Dust particles
+        const dustCount = 180;
+        const dustPositions = new Float32Array(dustCount * 3);
+        const dustSizes = new Float32Array(dustCount);
+        const dustPhases = new Float32Array(dustCount);
+
+        for (let i = 0; i < dustCount; i++) {
+            dustPositions[i * 3] = (Math.random() - 0.5) * 12;
+            dustPositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
+            dustPositions[i * 3 + 2] = (Math.random() - 0.3) * 3;
+            dustSizes[i] = Math.random() * 4 + 1;
+            dustPhases[i] = Math.random() * Math.PI * 2;
+        }
+
+        const dustGeometry = new THREE.BufferGeometry();
+        dustGeometry.setAttribute('position', new THREE.BufferAttribute(dustPositions, 3));
+        dustGeometry.setAttribute('aSize', new THREE.BufferAttribute(dustSizes, 1));
+        dustGeometry.setAttribute('aPhase', new THREE.BufferAttribute(dustPhases, 1));
+
+        const dustMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                uTime: { value: 0 },
+                uProgress: { value: 0 },
+                uColor: { value: paleHalo }
+            },
+            vertexShader: `
+                attribute float aSize;
+                attribute float aPhase;
+                varying float vAlpha;
+                uniform float uTime;
+                uniform float uProgress;
+                
+                void main() {
+                    float t = uTime * 0.2 + aPhase;
+                    vec3 pos = position;
+                    pos.x += sin(t) * 0.4;
+                    pos.y += cos(t * 0.8) * 0.3;
+                    pos.z += sin(t * 0.5) * 0.1;
+                    
+                    vAlpha = uProgress * 0.7;
+                    
+                    vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+                    gl_PointSize = aSize * uProgress * (200.0 / -mv.z);
+                    gl_Position = projectionMatrix * mv;
+                }
+            `,
+            fragmentShader: `
+                varying float vAlpha;
+                uniform vec3 uColor;
+                
+                void main() {
+                    float d = length(gl_PointCoord - 0.5);
+                    if (d > 0.5) discard;
+                    float a = smoothstep(0.5, 0.0, d) * vAlpha * 0.5;
+                    gl_FragColor = vec4(uColor, a);
+                }
+            `,
+            transparent: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+        });
+
+        const dust = new THREE.Points(dustGeometry, dustMaterial);
+        scene.add(dust);
+
+        // Soft light orbs
+        const orbGroup = new THREE.Group();
+        const orbCount = 4;
+
+        for (let i = 0; i < orbCount; i++) {
+            const orbGeom = new THREE.SphereGeometry(0.15 + Math.random() * 0.1, 16, 16);
+            const orbMat = new THREE.MeshBasicMaterial({
+                color: paleHalo,
+                transparent: true,
+                opacity: 0
+            });
+            const orb = new THREE.Mesh(orbGeom, orbMat);
+            orb.position.set(
+                2 + Math.random() * 3,
+                0.5 + Math.random() * 2,
+                -2 - Math.random() * 2
+            );
+            orb.userData.baseY = orb.position.y;
+            orb.userData.speed = 0.3 + Math.random() * 0.3;
+            orb.userData.phase = Math.random() * Math.PI * 2;
+            orbGroup.add(orb);
+        }
+        scene.add(orbGroup);
+
+        camera.position.z = 4;
+
+        // Mode tracking
+        let scrollProgress = 0;
+        let isAway = true;
+
+        const modeLabel = document.getElementById('mode-label');
+        const dotAway = document.getElementById('dot-away');
+        const dotHome = document.getElementById('dot-home');
+
+        // Animation loop
+        let animTime = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            animTime += 0.016;
+
+            bgMaterial.uniforms.uTime.value = animTime;
+            bgMaterial.uniforms.uProgress.value = scrollProgress;
+
+            dustMaterial.uniforms.uTime.value = animTime;
+            dustMaterial.uniforms.uProgress.value = scrollProgress;
+
+            // Animate orbs
+            orbGroup.children.forEach(orb => {
+                orb.position.y = orb.userData.baseY + Math.sin(animTime * orb.userData.speed + orb.userData.phase) * 0.3;
+                orb.material.opacity = scrollProgress * 0.15;
+            });
+
+            // Subtle camera movement
+            camera.position.x = Math.sin(animTime * 0.08) * 0.15;
+            camera.position.y = Math.cos(animTime * 0.06) * 0.1;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Scroll handler
+        const hero = document.getElementById('hero');
+        window.addEventListener('scroll', () => {
+            const rect = hero.getBoundingClientRect();
+            const h = hero.offsetHeight;
+            scrollProgress = Math.max(0, Math.min(1, -rect.top / h + 1));
+
+            const newIsAway = scrollProgress < 0.5;
+            if (newIsAway !== isAway) {
+                isAway = newIsAway;
+                modeLabel.textContent = isAway ? 'Away Mode' : 'Home Mode';
+                dotAway.classList.toggle('active', isAway);
+                dotHome.classList.toggle('active', !isAway);
+            }
+        });
+
+        // Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // === TIME OF DAY DEMO ===
+        const timeBtns = document.querySelectorAll('.time-btn');
+        const windowSky = document.getElementById('window-sky');
+        const sheerDrapes = document.getElementById('sheer-drapes');
+        const lightBeams = document.getElementById('light-beams');
+        const lampGlow = document.getElementById('lamp-glow');
+        const roomAmbient = document.getElementById('room-ambient');
+        const metricLight = document.getElementById('metric-light');
+        const metricTemp = document.getElementById('metric-temp');
+        const metricHumidity = document.getElementById('metric-humidity');
+        const metricMood = document.getElementById('metric-mood');
+
+        const timeSettings = {
+            morning: {
+                sky: 'linear-gradient(180deg, #F8EDE3 0%, #FFE8D6 30%, #FFF5EB 100%)',
+                drapesOpacity: 0.6,
+                beamsOpacity: 0.8,
+                lampOpacity: 0,
+                ambientBg: 'radial-gradient(ellipse at 20% 30%, rgba(248,237,227,0.3) 0%, transparent 60%)',
+                light: 45,
+                temp: 22,
+                humidity: 48,
+                mood: 'Serene'
+            },
+            noon: {
+                sky: 'linear-gradient(180deg, #E8E4E0 0%, #F0EBE5 30%, #FAF8F5 100%)',
+                drapesOpacity: 0.4,
+                beamsOpacity: 0.5,
+                lampOpacity: 0,
+                ambientBg: 'radial-gradient(ellipse at 50% 20%, rgba(232,228,224,0.3) 0%, transparent 70%)',
+                light: 85,
+                temp: 24,
+                humidity: 42,
+                mood: 'Bright'
+            },
+            dusk: {
+                sky: 'linear-gradient(180deg, #D4C4B4 0%, #E8D8C8 30%, #C8B8A4 100%)',
+                drapesOpacity: 0.5,
+                beamsOpacity: 0.4,
+                lampOpacity: 0.4,
+                ambientBg: 'radial-gradient(ellipse at 80% 50%, rgba(191,168,138,0.25) 0%, transparent 60%)',
+                light: 35,
+                temp: 23,
+                humidity: 50,
+                mood: 'Warm'
+            },
+            night: {
+                sky: 'linear-gradient(180deg, #2D2A26 0%, #3A3632 30%, #2A2825 100%)',
+                drapesOpacity: 0.8,
+                beamsOpacity: 0,
+                lampOpacity: 1,
+                ambientBg: 'radial-gradient(ellipse at 85% 60%, rgba(191,168,138,0.2) 0%, transparent 50%)',
+                light: 15,
+                temp: 21,
+                humidity: 52,
+                mood: 'Calm'
+            }
+        };
+
+        // Create light beams
+        for (let i = 0; i < 5; i++) {
+            const beam = document.createElement('div');
+            beam.className = 'light-beam';
+            beam.style.left = `${15 + i * 15}%`;
+            beam.style.width = `${3 + Math.random() * 4}%`;
+            beam.style.height = '100%';
+            beam.style.transform = `rotate(${-5 + i * 2}deg)`;
+            lightBeams.appendChild(beam);
+        }
+
+        function setTimeOfDay(time) {
+            const s = timeSettings[time];
+            windowSky.style.background = s.sky;
+            sheerDrapes.style.opacity = s.drapesOpacity;
+            lightBeams.style.opacity = s.beamsOpacity;
+            lampGlow.style.opacity = s.lampOpacity;
+            roomAmbient.style.background = s.ambientBg;
+
+            metricLight.innerHTML = `${s.light}<span class="metric-unit">%</span>`;
+            metricTemp.innerHTML = `${s.temp}<span class="metric-unit">°</span>`;
+            metricHumidity.innerHTML = `${s.humidity}<span class="metric-unit">%</span>`;
+            metricMood.textContent = s.mood;
+        }
+
+        timeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                timeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                setTimeOfDay(btn.dataset.time);
+            });
+        });
+
+        // Initialize
+        setTimeOfDay('morning');
+
+        // === LIVING ROOM MOUSE INTERACTION ===
+        const livingRoom = document.getElementById('living-room');
+        const sensorOverlay = document.getElementById('sensor-overlay');
+
+        // Create sensor rings
+        const sensorPositions = [
+            { x: 25, y: 40 },
+            { x: 75, y: 35 },
+            { x: 50, y: 70 },
+            { x: 85, y: 55 }
+        ];
+
+        sensorPositions.forEach((pos, i) => {
+            const ring = document.createElement('div');
+            ring.className = 'sensor-ring';
+            ring.style.left = `${pos.x}%`;
+            ring.style.top = `${pos.y}%`;
+            ring.style.width = '60px';
+            ring.style.height = '60px';
+            ring.style.marginLeft = '-30px';
+            ring.style.marginTop = '-30px';
+            sensorOverlay.appendChild(ring);
+
+            const temp = document.createElement('div');
+            temp.className = 'sensor-temp';
+            temp.style.left = `${pos.x + 5}%`;
+            temp.style.top = `${pos.y}%`;
+            temp.textContent = `${20 + Math.floor(Math.random() * 4)}°`;
+            sensorOverlay.appendChild(temp);
+        });
+
+        const sensorRings = sensorOverlay.querySelectorAll('.sensor-ring');
+        const sensorTemps = sensorOverlay.querySelectorAll('.sensor-temp');
+
+        livingRoom.addEventListener('mousemove', (e) => {
+            const rect = livingRoom.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+
+            sensorRings.forEach((ring, i) => {
+                const pos = sensorPositions[i];
+                const dx = x * 100 - pos.x;
+                const dy = y * 100 - pos.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const active = dist < 25;
+                ring.classList.toggle('active', active);
+                sensorTemps[i].classList.toggle('active', active);
+            });
+        });
+
+        livingRoom.addEventListener('mouseleave', () => {
+            sensorRings.forEach(ring => ring.classList.remove('active'));
+            sensorTemps.forEach(temp => temp.classList.remove('active'));
+        });
+
+        // === SCENE BLOCKS SCROLL ANIMATION ===
+        const sceneBlocks = document.querySelectorAll('.scene-block');
+        const sceneObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        sceneBlocks.forEach(block => sceneObserver.observe(block));
+
+        // === SPECS ACCORDION ===
+        const specItems = document.querySelectorAll('.spec-item');
+        specItems.forEach(item => {
+            const head = item.querySelector('.spec-head');
+            head.addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
+
+        // === SMOOTH SCROLL ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
